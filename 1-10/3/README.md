@@ -20,6 +20,7 @@ Implement a function that takes a natural number as an argument and returns a li
 
 #### Example:
 `[IN]: calculate(48)`
+
 `[OUT]: [2, 2, 2, 2, 3]`
 
 You just need to implement the function. The tests run several test cases to validate the solution.

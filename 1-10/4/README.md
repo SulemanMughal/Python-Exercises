@@ -22,6 +22,7 @@ Using the previous exercise, implement a function that takes a natural number as
 
 #### Example:
 `[IN]: calculate(13195)`
+
 `[OUT]: 29`
 
 You just need to implement the function. The tests run several test cases to validate the solution.
