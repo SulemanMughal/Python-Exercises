@@ -1,4 +1,4 @@
-# Exercise No. 3
+# Exercise No. 4
 
 In number theory, integer factorization is the decomposition of a composite number into a product of smaller integers. If these factors are further restricted to prime numbers, the process is called **prime factorization**.
 
@@ -14,12 +14,14 @@ We can break down a composite number into prime factors. For example:
 
 -   15 = 3 * 5
 -   36 = 2 * 2 * 3 * 3
--   48 = 2 * 2 * 2 * 2 * 3
 
-Implement a function that takes a natural number as an argument and returns a list containing the prime factorization of that number. Present the solution in the form of a function called `calculate()`.
+The largest prime factor for 15 is 5, and for 36 is 3.
+
+
+Using the previous exercise, implement a function that takes a natural number as an argument and returns the greatest prime factor of that number. Present the solution in the form of a function called `calculate()`.
 
 #### Example:
-`[IN]: calculate(48)`
-`[OUT]: [2, 2, 2, 2, 3]`
+`[IN]: calculate(13195)`
+`[OUT]: 29`
 
 You just need to implement the function. The tests run several test cases to validate the solution.
