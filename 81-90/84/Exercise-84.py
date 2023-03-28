@@ -1,30 +1,3 @@
-# The Matrix class has been implemented.
-
-# One of the basic matrix operations is transposition. A transposed matrix is created by replacing its rows with columns and columns with rows.
-
-# Add a method named transpose() to the implementation of the Matrix class that allows you to create a transposed matrix.
-
-
-# Example:
-
-
-#     [IN]: m = Matrix([[2, 5, 4], [1, 3, 2]])
-#     [IN]: m.transpose()
-#     [OUT]: [[2, 1], [5, 3], [4, 2]]
-
-
-# Example:
-
-
-#     [IN]: m = Matrix([[2, -1, 5], [9, 4, 5], [5, 2, -1]])
-#     [IN]: m.transpose()
-#     [OUT]: [[2, 9, 5], [-1, 4, 2], [5, 5, -1]]
-
-
-# You just need to add the transpose() method.
-
-
-
 
 class Matrix:
     def __init__(self, array):
@@ -81,46 +54,6 @@ class Matrix:
     
     def __ne__(self, other):
         return not self == other
-    
-    def __add__(self, other):
-        if not isinstance(other, Matrix):
-            raise TypeError(
-                'Cannot add object that is not a matrix.'
-            )
-    
-        if self.size != other.size:
-            raise ValueError(
-                'The matrices must be of the same size.'
-            )
-    
-        array = [
-            [
-                self.array[i][j] + other.array[i][j]
-                for j in range(self.n_cols)
-            ]
-            for i in range(self.n_rows)
-        ]
-        return Matrix(array)
-    
-    def __sub__(self, other):
-        if not isinstance(other, Matrix):
-            raise TypeError(
-                'Cannot subtract object that is not a matrix.'
-            )
-    
-        if self.size != other.size:
-            raise ValueError(
-                'The matrices must be of the same size.'
-            )
-    
-        array = [
-            [
-                self.array[i][j] - other.array[i][j]
-                for j in range(self.n_cols)
-            ]
-            for i in range(self.n_rows)
-        ]
-        return Matrix(array)
     
     @property
     def n_rows(self):
@@ -210,10 +143,3 @@ class Matrix:
                 + self.array[idx][index:]
                 for idx in range(self.n_rows)
             ]
-    
-    def transpose(self):
-        array = [
-            [row[idx] for row in self.array]
-            for idx in range(self.n_cols)
-        ]
-        return Matrix(array)

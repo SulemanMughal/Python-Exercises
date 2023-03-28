@@ -1,40 +1,3 @@
-# The Matrix class has been implemented.
-
-# Add a method called add_column() to the Matrix class that allows to add a column to the matrix. The method takes two additional arguments:
-
-#     column - the column we want to add to the matrix (list)
-
-#     index - the index at which to add the matrix column; default None -> adds a column to the end of the matrix
-
-# Before the method adds a column to the matrix, some basic validation must be performed. Validation steps:
-
-#     Check if the column is an instance of the list class. If not, raise the TypeError error with the appropriate message (choose the message freely, so that it explains the nature of the error).
-
-#     Check if the column items are instances of the int or float type. If not, raise the TypeError error with the appropriate message (choose the message freely, so that it explains the nature of the error).
-
-#     Check if the number of items in the column matches the number of rows in the matrix. If not, raise the ValueError error with the appropriate message (choose the message freely, so that it explains the nature of the error).
-
-
-# Example:
-
-
-#     [IN]: m = Matrix([[3, 1, 6], [5, 2, 6], [0, 4, 2]])
-#     [IN]: m.add_column([1, 2, 3])
-#     [IN]: m
-#     [OUT]: [[3, 1, 6, 1], [5, 2, 6, 2], [0, 4, 2, 3]]
-
-
-# Example:
-
-
-#     [IN]: m = Matrix([[3, 1, 6], [5, 2, 6], [0, 4, 2]])
-#     [IN]: m.add_column([1, 2, 3], 0)
-#     [IN]: m
-#     [OUT]: [[1, 3, 1, 6], [2, 5, 2, 6], [3, 0, 4, 2]]
-
-
-# You just need to implement the add_column() method.
-
 
 class Matrix:
     def __init__(self, array):
@@ -81,6 +44,56 @@ class Matrix:
     
     def __repr__(self):
         return str(self.array)
+    
+    def __eq__(self, other):
+        if not isinstance(other, Matrix):
+            raise TypeError(
+                'Cannot compare an object that is not a matrix.'
+            )
+        return self.array == other.array
+    
+    def __ne__(self, other):
+        return not self == other
+    
+    def __add__(self, other):
+        if not isinstance(other, Matrix):
+            raise TypeError(
+                'Cannot add object that is not a matrix.'
+            )
+    
+        if self.size != other.size:
+            raise ValueError(
+                'The matrices must be of the same size.'
+            )
+    
+        array = [
+            [
+                self.array[i][j] + other.array[i][j]
+                for j in range(self.n_cols)
+            ]
+            for i in range(self.n_rows)
+        ]
+        return Matrix(array)
+    
+    def __sub__(self, other):
+        if not isinstance(other, Matrix):
+            raise TypeError(
+                'Cannot subtract object that is not a matrix.'
+            )
+    
+        if self.size != other.size:
+            raise ValueError(
+                'The matrices must be of the same size.'
+            )
+    
+        array = [
+            [
+                self.array[i][j] - other.array[i][j]
+                for j in range(self.n_cols)
+            ]
+            for i in range(self.n_rows)
+        ]
+        return Matrix(array)
     
     @property
     def n_rows(self):
@@ -170,3 +183,30 @@ class Matrix:
                 + self.array[idx][index:]
                 for idx in range(self.n_rows)
             ]
+    
+    def transpose(self):
+        array = [
+            [row[idx] for row in self.array]
+            for idx in range(self.n_cols)
+        ]
+        return Matrix(array)
+    
+    def multiply_elementwise(self, other):
+        if not isinstance(other, Matrix):
+            raise TypeError(
+                'Cannot multiply object that is not a matrix.'
+            )
+    
+        if self.size != other.size:
+            raise ValueError(
+                'The matrices must be of the same size.'
+            )
+    
+        array = [
+            [
+                self.array[i][j] * other.array[i][j]
+                for j in range(self.n_cols)
+            ]
+            for i in range(self.n_rows)
+        ]
+        return Matrix(array)

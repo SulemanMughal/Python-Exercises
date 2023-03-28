@@ -1,47 +1,3 @@
-# The Matrix class has been implemented.
-
-# One of the basic matrix operations is multiplication. Without matrix multiplication, it is impossible to implement, for example, neural networks. Here you need to pay special attention because matrix multiplication is slightly different from operations such as addition or subtraction.
-
-# Before we proceed to the implementation of the __mul__() method, we will add class method called dot(). For this we can use the @classmethod decorator.
-
-# We can treat the rows and columns of the matrix separately as vectors and calculate their dot product.
-
-# For example, the dot product of vectors dot([-1, 4, 5], [-4, 0, 1]) is equal to 9, because:
-
-
-#     dot([-1, 4, 5], [-4, 0, 1]) = (-1) * (-4) + 4 * 0 + 5 * 1 = 4 + 0 + 5 = 9
-
-
-# The dot() method takes two additional arguments:
-
-#     row - row of the matrix (list)
-
-#     column - column of the matrix (list)
-
-
-# If the user wants to pass an object other than the list type to the dot() method, raise a TypeError with the appropriate message.
-
-# In this case, we don't validate the length of the row and column lists. We assume that the user is passing the correct length of the lists. We will use the dot() method in the next exercise to implement matrix multiplication.
-
-
-# Example:
-
-
-#     [IN]: Matrix.dot([-1, 4, 5], [-4, 0, 1])
-#     [OUT]: 9
-
-
-# Example:
-
-
-#     [IN]: Matrix.dot([-1, -3], [10, -2])
-#     [OUT]: -4
-
-
-# You just need to implement the dot() method. 
-
-
-
 
 class Matrix:
     def __init__(self, array):
@@ -138,6 +94,28 @@ class Matrix:
             for i in range(self.n_rows)
         ]
         return Matrix(array)
+    
+    def __mul__(self, other):
+        if not isinstance(other, Matrix):
+            raise TypeError(
+                'Cannot multiply object that is not a matrix.'
+            )
+        else:
+            if other.n_rows != self.n_cols:
+                raise ValueError(
+                    'The number of rows in the second matrix must '
+                    'be equal to the number of columns in the '
+                    'first matrix.'
+                )
+    
+            array = [
+                [
+                    Matrix.dot(row, column)
+                    for column in other.transpose().array
+                ]
+                for row in self.array
+            ]
+            return Matrix(array)
     
     @property
     def n_rows(self):
