@@ -1,23 +1,3 @@
-# The Stack class has been implemented.
-
-# A function called is_valid_html() has been implemented that checks if the HTML document (in the form of a str object) is valid for the number of open and closed HTML tags.
-
-# Load the two files attached to the exercise:
-
-#     template1.html
-
-#     template2.html
-
-# And check the correctness of HTML documents using the implemented is_valid_html() function. Print the result to the console.
-
-
-# Expected result:
-
-
-#     True
-#     False
-
-
 
 class EmptyStackError(Exception):
     pass
@@ -66,13 +46,3 @@ def is_valid_html(html):
                 return False
         first_char_idx = html.find('<', next_char_idx + 1)
     return stack.is_empty()
-    
-    
-with open('template1.html', 'r') as file:
-    content1 = file.read()
-    
-with open('template2.html', 'r') as file:
-    content2 = file.read()
-    
-print(is_valid_html(content1))
-print(is_valid_html(content2))

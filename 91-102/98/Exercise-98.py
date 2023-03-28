@@ -1,24 +1,3 @@
-# The Stack class has been implemented.
-
-# Add a method called clear() to the Stack class that clears the stack (remove all items in the stack).
-
-
-# Example:
-
-
-#     [IN]: techs = Stack()
-#     [IN]: techs.push('python')
-#     [IN]: techs.push('django')
-#     [IN]: len(techs)
-#     [OUT]: 2
-     
-#     [IN]: techs.clear()
-#     [IN]: len(techs)
-#     [OUT]: 0
-
-
-# You just need to implement the clear() method of the Stack class. 
-
 
 class EmptyStackError(Exception):
     pass
@@ -49,5 +28,8 @@ class Stack:
             raise EmptyStackError('The stack is empty.')
         return self._data[-1]
     
-    def clear(self):
-        self._data.clear()
+    
+def transfer(stack_1, stack_2):
+    while not stack_1.is_empty():
+        stack_2.push(stack_1.pop())
+    return stack_1, stack_2
