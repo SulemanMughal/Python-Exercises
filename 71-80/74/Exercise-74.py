@@ -1,38 +1,3 @@
-# The Matrix class has been implemented.
-
-# Add two read-only property to the Matrix class:
-
-#     n_rows - the number of rows in the matrix
-
-#     n_cols - the number of columns in the matrix
-
-
-# Example:
-
-
-#     [IN]: m = Matrix([[3, 1, 6], [5, 2, 6]])
-     
-#     [IN]: m.n_rows
-#     [OUT]: 2
-     
-#     [IN]: m.n_cols
-#     [OUT]: 3
-
-
-# Example:
-
-
-#     [IN]: m = Matrix([])
-     
-#     [IN]: m.n_rows
-#     [OUT]: 0
-     
-#     [IN]: m.n_cols
-#     [OUT]: 0
-
-
-# You only need to complete the implementation of the Matrix class.
-
 
 class Matrix:
     def __init__(self, array):
@@ -65,7 +30,7 @@ class Matrix:
                 )
     
             if not all(
-                type(number) in (int, float)
+                isinstance(number, (int, float))
                 for row in array
                 for number in row
             ):
@@ -74,18 +39,9 @@ class Matrix:
                 )
     
             self.array = array
+    
         else:
             self.array = []
     
     def __repr__(self):
         return str(self.array)
-    
-    @property
-    def n_rows(self):
-        return len(self.array)
-    
-    @property
-    def n_cols(self):
-        if len(self.array) == 0:
-            return 0
-        return len(self.array[0])

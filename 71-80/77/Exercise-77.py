@@ -1,30 +1,3 @@
-# The Matrix class has been implemented.
-
-# Add a method called identity() to the Matrix class that returns the identity matrix for square matrix, otherwise None.
-
-
-# Reminder: The identity matrix of size n is the n × n square matrix with ones on the main diagonal and zeros elsewhere.
-
-
-# Example:
-
-
-#     [IN]: m = Matrix([[3, 1, 6], [5, 2, 6], [5, 2, 6]])
-#     [IN]: m.identity()
-#     [OUT]: [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
-
-
-# Example:
-
-
-#     [IN]: m = Matrix([[3, 1, 6]])
-#     [IN]: m.identity()
-#     [OUT]: None
-
-
-# You just need to implement the identity() method. 
-
-
 
 class Matrix:
     def __init__(self, array):
@@ -85,26 +58,3 @@ class Matrix:
     @property
     def size(self):
         return self.n_rows, self.n_cols
-    
-    @property
-    def is_square_matrix(self):
-        return self.size[0] == self.size[1]
-    
-    def zero(self):
-        array = [
-            [0 for _ in range(self.n_cols)]
-            for _ in range(self.n_rows)
-        ]
-        return Matrix(array)
-    
-    def identity(self):
-        if not self.is_square_matrix:
-            return None
-        array = [
-            [
-                1 if row == col else 0
-                for row in range(self.n_rows)
-            ]
-            for col in range(self.n_cols)
-        ]
-        return Matrix(array)
